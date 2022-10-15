@@ -42,43 +42,34 @@ class MyWindow(Gtk.Window):
     def __init__(self):
         super().__init__(title="Hello")
 
-        box_v = Gtk.Box(orientation="vertical", spacing=0)
+        box_v = Gtk.Box(orientation="vertical", spacing=0, margin=20)
         self.add(box_v)
         
-        box = Gtk.Box(spacing=10, margin=10)
-        box_v.pack_start(box, True, True, 10)
 
-        label = Gtk.Label( label="Input audio file", halign=Gtk.Align.START )
-        box.pack_start(label, True, True, 10)
-
-        self.audio_file_entry = Gtk.Entry(width_chars=30)
-        box.pack_start(self.audio_file_entry, True, True, 10)
-
-        # Rand 2 - Category 1
-        boxh_cat_1 = Gtk.Box(spacing=10, margin=10)
-        box_v.pack_start(boxh_cat_1, True, True, 0)
+        # Rand 1 - Category 1
         # checkbox si label
         ck_cat_1 = Gtk.CheckButton()
-        boxh_cat_1.pack_start(ck_cat_1, True, True, 10)
         label_cat_1 = Gtk.Label( label="Category 1", halign=Gtk.Align.START )
-        boxh_cat_1.pack_start(label_cat_1, True, True, 0)
 
 
-        # Rand 3 - Sub-Category 1-1
-        boxh_subcat_1_1 = Gtk.Box(spacing=10, margin=0, margin_left=40)
-        box_v.pack_start(boxh_subcat_1_1, True, True, 0)
+        # Rand 2 - Sub-Category 1-1
         # checkbox si label
         ck_subcat_1_1 = Gtk.CheckButton()
-        boxh_subcat_1_1.pack_start(ck_subcat_1_1, True, True, 10)
         label_subcat_1 = Gtk.Label( label="Subcategory 1-1", halign=Gtk.Align.START )
-        boxh_subcat_1_1.pack_start(label_subcat_1, True, True, 0)
+
+
+        grid = Gtk.Grid()
+        grid.attach(ck_cat_1, 0, 0, 1, 1)
+        grid.attach(label_cat_1, 2, 0, 1, 1)
+        grid.attach(ck_subcat_1_1, 1, 1, 1, 1)
+        grid.attach(label_subcat_1, 2, 1, 1, 1)
+        box_v.pack_start(grid, True, True, 0)
 
 
         self.button = Gtk.Button(label="Generate", margin=20, margin_top=40)
         self.button.connect("clicked", self.on_button_clicked)
         box_v.pack_start(self.button, True, True, 0)
 
-        self.audio_file_entry.set_text("some-audio.wav")
 
     def on_button_clicked(self, widget):
         print("to do")
